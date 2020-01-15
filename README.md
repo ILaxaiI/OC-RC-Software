@@ -1,2 +1,1 @@
-# OC-RC-Software
-Opencomputers nuclear craft controll software 
+# im just putting my open computers stuff here
