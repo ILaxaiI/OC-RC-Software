@@ -18,7 +18,7 @@ end
 local safety = {off = false,heat = true, energy = true}
 
 local buttons = {
-  {x = 93, y = 2,w = 4,h = 2, funct = exit,color = 0xff0000},
+  {x = 95, y = 2,w = 4,h = 2, funct = exit,color = 0xff0000},
   {x = 70,y = 10,w = 4,h = 2,funct = function() safety.heat = not safety.heat end,color = 0xff0000},
   {x = 70,y = 14,w = 4,h = 2,funct = function() safety.energy = not safety.energy end,color = 0xff0000},
   {x = 70,y = 25,w = 4,h = 2,funct = function() safety.off = not safety.off end,color = 0xffff00},
@@ -74,7 +74,7 @@ local function update()
   state.heat,state.maxHeat = reactor.getHeatLevel(),reactor.getMaxHeatLevel()
   state.energy,state.maxEnergy,state.isActive = reactor.getEnergyStored(),reactor.getMaxEnergyStored(),reactor.isProcessing()
   
-  state.charged = state.energy >= state.maxEnergy*0.90 
+  state.charged = state.energy >= state.maxEnergy*0.95
   state.overHeating = state.heat >= state.maxHeat/2
   local status = ((state.charged and safety.energy) or (state.overHeating and safety.heat)) 
   
@@ -114,7 +114,7 @@ local function draw()
   gpu.set(10,10,"Heat: "..state.heat.."/"..state.maxHeat)
 
   gpu.setForeground(state.charged and 0x00ff00 or 0xffffff)
-  gpu.set(10,25,"RF: "..state.energy.."/"..state.maxEnergy)
+  gpu.set(10,21,"RF: "..state.energy.."/"..state.maxEnergy)
   gpu.setForeground(0xffffff)
   gpu.set(70,8,"Safety Modes")
   gpu.set(70,9,"Heat: ".. (safety.heat and "on" or "off"))
@@ -127,21 +127,21 @@ local function draw()
   gpu.fill(1,0,2,height," ")
   gpu.fill(width-1,0,2,height," ")
   gpu.fill(1,0,width,2," ")
-  gpu.fill(1,0,height-2,2," ")
+  gpu.fill(1,height-2,width,2," ")
   
   gpu.setBackground(0x444444)
-  gpu.fill(10,12,27,4," ")
-  gpu.fill(10,23,27,4," ")
+  gpu.fill(10,12,42,4," ")
+  gpu.fill(10,23,42,4," ")
   gpu.setBackground(0)
-  gpu.fill(11,13,25,2," ")
-  gpu.fill(11,24,25,2," ")
+  gpu.fill(12,13,40,2," ")
+  gpu.fill(12,24,40,2," ")
   
   
   
   
   gpu.setBackground(0x33ff33)
-  gpu.fill(11,13,25*Hpercent,2," ")
-  gpu.fill(11,24,25*RFpercent,2," ")
+  gpu.fill(11,13,math.floor(40*Hpercent+0.5),2," ")
+  gpu.fill(11,24,math.floor(40*RFpercent+0.5),2," ")
   
   
   for i = 1,#buttons do
