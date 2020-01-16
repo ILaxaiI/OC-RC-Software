@@ -18,7 +18,7 @@ end
 local safety = {off = false,heat = true, energy = true}
 
 local buttons = {
-  {x = 96, y = 1,w = 4,h = 2, funct = exit,color = 0xff0000},
+  {x = 93, y = 2,w = 4,h = 2, funct = exit,color = 0xff0000},
   {x = 70,y = 10,w = 4,h = 2,funct = function() safety.heat = not safety.heat end,color = 0xff0000},
   {x = 70,y = 14,w = 4,h = 2,funct = function() safety.energy = not safety.energy end,color = 0xff0000},
   {x = 70,y = 25,w = 4,h = 2,funct = function() safety.off = not safety.off end,color = 0xffff00},
@@ -127,7 +127,7 @@ local function draw()
   gpu.fill(1,0,2,height," ")
   gpu.fill(width-1,0,2,height," ")
   gpu.fill(1,0,width,2," ")
-  gpu.fill(1,0,height,2," ")
+  gpu.fill(1,0,height-2,2," ")
   
   gpu.setBackground(0x444444)
   gpu.fill(10,12,27,4," ")
