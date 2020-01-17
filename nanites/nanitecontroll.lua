@@ -123,7 +123,7 @@ local function draw()
     rectangle(x+11,9+y,3,1,v.effectflag and 0x11ff11 or 0x333333)
     rectangle(x+14,9+y,3,1,v.badflag and 0xff2222 or 0x222222)
   end
-  rectangle(70,1,2,height," ",0x222222)
+  rectangle(70,1,2,height,0x222222)
   gpu.set(75,2,effects:match("%b{}"))
   gpu.setBackground(0)
 end
