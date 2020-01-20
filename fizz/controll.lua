@@ -54,7 +54,7 @@ function ui.touch(x,y)
 end
 
 local function userInput()
-  local type,_,arg1,arg2,arg3 = event.pull(0)
+  local type,_,arg1,arg2,arg3 = event.pull(0.1)
   if ui[type] then ui[type](arg1,arg2,arg3) end
 end
 
@@ -156,6 +156,7 @@ while true do
   userInput()
   update()
   draw()
+  os.sleep(0.1)
 end
 
 
